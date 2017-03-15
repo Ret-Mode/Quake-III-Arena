@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Release Win32">
-				<Option output="$(Q3DEST)/quake3" prefix_auto="1" extension_auto="1" />
+				<Option output="$(Q3DEST)/quake3mingw" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="$(Q3DEST)" />
 				<Option object_output="obj/release/quake3" />
 				<Option type="0" />
@@ -31,7 +31,7 @@
 				</Linker>
 			</Target>
 			<Target title="Debug Win32">
-				<Option output="$(Q3DEST)/quake3_d" prefix_auto="1" extension_auto="1" />
+				<Option output="$(Q3DEST)/quake3mingw_d" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="$(Q3DEST)" />
 				<Option object_output="obj/debug/quake3" />
 				<Option type="0" />
