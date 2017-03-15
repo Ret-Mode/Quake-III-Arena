@@ -321,7 +321,7 @@ Dlls will call this directly
 
   For speed, we just grab 15 arguments, and don't worry about exactly
    how many the syscall actually needs; the extra is thrown away.
- 
+
 ============
 */
 int QDECL VM_DllSyscall( int arg, ... ) {
@@ -330,14 +330,14 @@ int QDECL VM_DllSyscall( int arg, ... ) {
   int args[16];
   int i;
   va_list ap;
-  
+
   args[0] = arg;
-  
+
   va_start(ap, arg);
   for (i = 1; i < sizeof (args) / sizeof (args[i]); i++)
     args[i] = va_arg(ap, int);
   va_end(ap);
-  
+
   return currentVM->systemCall( args );
 #else // original id code
 	return currentVM->systemCall( &arg );
@@ -363,8 +363,8 @@ vm_t *VM_Restart( vm_t *vm ) {
 	if ( vm->dllHandle ) {
 		char	name[MAX_QPATH];
 	    int			(*systemCall)( int *parms );
-		
-		systemCall = vm->systemCall;	
+
+		systemCall = vm->systemCall;
 		Q_strncpyz( name, vm->name, sizeof( name ) );
 
 		VM_Free( vm );
@@ -389,9 +389,9 @@ vm_t *VM_Restart( vm_t *vm ) {
 
 	// validate
 	if ( header->vmMagic != VM_MAGIC
-		|| header->bssLength < 0 
-		|| header->dataLength < 0 
-		|| header->litLength < 0 
+		|| header->bssLength < 0
+		|| header->dataLength < 0
+		|| header->litLength < 0
 		|| header->codeLength <= 0 ) {
 		VM_Free( vm );
 		Com_Error( ERR_FATAL, "%s has bad header", filename );
@@ -432,7 +432,7 @@ it will attempt to load as a system dll
 
 #define	STACK_SIZE	0x20000
 
-vm_t *VM_Create( const char *module, int (*systemCalls)(int *), 
+vm_t *VM_Create( const char *module, int (*systemCalls)(int *),
 				vmInterpret_t interpret ) {
 	vm_t		*vm;
 	vmHeader_t	*header;
@@ -507,9 +507,9 @@ vm_t *VM_Create( const char *module, int (*systemCalls)(int *),
 
 	// validate
 	if ( header->vmMagic != VM_MAGIC
-		|| header->bssLength < 0 
-		|| header->dataLength < 0 
-		|| header->litLength < 0 
+		|| header->bssLength < 0
+		|| header->dataLength < 0
+		|| header->litLength < 0
 		|| header->codeLength <= 0 ) {
 		VM_Free( vm );
 		Com_Error( ERR_FATAL, "%s has bad header", filename );
@@ -540,6 +540,13 @@ vm_t *VM_Create( const char *module, int (*systemCalls)(int *),
 
 	// copy or compile the instructions
 	vm->codeLength = header->codeLength;
+
+#if !defined(HAVE_VM_COMPILED)
+	if(interpret >= VMI_COMPILED) {
+		Com_Printf("Architecture doesn't have a bytecode compiler, using interpreter\n");
+		interpret = VMI_BYTECODE;
+	}
+#endif
 
 	if ( interpret >= VMI_COMPILED ) {
 		vm->compiled = qtrue;
@@ -826,9 +833,9 @@ void VM_LogSyscalls( int *args ) {
 
 
 
-#ifdef oDLL_ONLY // bk010215 - for DLL_ONLY dedicated servers/builds w/o VM
+#ifdef DLL_ONLY // bk010215 - for DLL_ONLY dedicated servers/builds w/o VM
 int	VM_CallCompiled( vm_t *vm, int *args ) {
-  return(0); 
+  return(0);
 }
 
 void VM_Compile( vm_t *vm, vmHeader_t *header ) {}
