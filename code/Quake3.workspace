@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="quake3 workspace">
+		<Project filename="splines/Splines.cbp" />
+		<Project filename="botlib/botlib.cbp" />
+		<Project filename="cgame/cgame.cbp" />
+		<Project filename="game/game.cbp" />
+		<Project filename="q3_ui/q3_ui.cbp" />
+		<Project filename="quake3.cbp">
+			<Depends filename="splines/Splines.cbp" />
+			<Depends filename="botlib/botlib.cbp" />
+			<Depends filename="renderer/renderer.cbp" />
+		</Project>
+		<Project filename="renderer/renderer.cbp" />
+		<Project filename="ui/ui.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>

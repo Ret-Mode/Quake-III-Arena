@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="quake3" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Release Win32">
+				<Option output="$(Q3DEST)/quake3" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="$(Q3DEST)" />
+				<Option object_output="obj/release/quake3" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_WINDOWS" />
+					<Add directory="win32" />
+				</Compiler>
+				<Linker>
+					<Add option="-static" />
+					<Add library="winmm" />
+					<Add library="wsock32" />
+					<Add library="output/libbotlib.a" />
+					<Add library="output/librenderer.a" />
+					<Add library="output/libSplines.a" />
+					<Add library="ole32" />
+				</Linker>
+			</Target>
+			<Target title="Debug Win32">
+				<Option output="$(Q3DEST)/quake3_d" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="$(Q3DEST)" />
+				<Option object_output="obj/debug/quake3" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-W" />
+					<Add option="-O0" />
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D_WINDOWS" />
+					<Add directory="win32" />
+				</Compiler>
+				<Linker>
+					<Add option="-static" />
+					<Add library="winmm" />
+					<Add library="wsock32" />
+					<Add library="output/libbotlibd.a" />
+					<Add library="output/librendererd.a" />
+					<Add library="output/libSplinesd.a" />
+					<Add library="ole32" />
+				</Linker>
+			</Target>
+			<Target title="Release TA Win32">
+				<Option output="./Release_TA/quake3" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Release_TA" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-D_WIN32" />
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-Wall" />
+					<Add option="-O2" />
+					<Add directory="win32" />
+				</Compiler>
+				<Linker>
+					<Add library="winmm" />
+					<Add library="wsock32" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="rem bash -c perl ./unix/cons -- release-TA" />
+				</ExtraCommands>
+			</Target>
+			<Target title="Debug TA Win32">
+				<Option output="./Debug_TA/quake3" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Debug_TA" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-W" />
+					<Add option="-g" />
+					<Add option="-O0" />
+					<Add directory="win32" />
+				</Compiler>
+				<Linker>
+					<Add library="winmm" />
+					<Add library="wsock32" />
+					<Add library="./Debug/libbotlib.a" />
+					<Add library="./Debug_TA/libbotlib.a" />
+					<Add library="./Debug/librenderer.a" />
+					<Add library="./Debug_TA/librenderer.a" />
+					<Add library="./Debug/libSplines.a" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="rem bash -c perl ./unix/cons -- debug-TA" />
+				</ExtraCommands>
+			</Target>
+			<Environment>
+				<Variable name="Q3DEST" value=".\output" />
+			</Environment>
+		</Build>
+		<Unit filename="Construct" />
+		<Unit filename="cgame/cg_public.h" />
+		<Unit filename="cgame/tr_types.h" />
+		<Unit filename="client/cl_cgame.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="client/cl_cin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="client/cl_console.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="client/cl_input.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="client/cl_keys.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="client/cl_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="client/cl_net_chan.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="client/cl_parse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="client/cl_scrn.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="client/cl_ui.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="client/client.h" />
+		<Unit filename="client/keys.h" />
+		<Unit filename="client/snd_adpcm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="client/snd_dma.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="client/snd_local.h" />
+		<Unit filename="client/snd_mem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="client/snd_mix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="client/snd_public.h" />
+		<Unit filename="client/snd_wavelet.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="game/bg_public.h" />
+		<Unit filename="game/g_public.h" />
+		<Unit filename="game/q_math.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="game/q_shared.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="game/q_shared.h" />
+		<Unit filename="game/surfaceflags.h" />
+		<Unit filename="qcommon/cm_load.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="qcommon/cm_local.h" />
+		<Unit filename="qcommon/cm_patch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="qcommon/cm_patch.h" />
+		<Unit filename="qcommon/cm_polylib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="qcommon/cm_polylib.h" />
+		<Unit filename="qcommon/cm_public.h" />
+		<Unit filename="qcommon/cm_test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="qcommon/cm_trace.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="qcommon/cmd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="qcommon/common.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="qcommon/cvar.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="qcommon/files.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="qcommon/huffman.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="qcommon/md4.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="qcommon/msg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="qcommon/net_chan.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="qcommon/qcommon.h" />
+		<Unit filename="qcommon/qfiles.h" />
+		<Unit filename="qcommon/unzip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="qcommon/unzip.h" />
+		<Unit filename="qcommon/vm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="qcommon/vm_interpreted.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="qcommon/vm_local.h" />
+		<Unit filename="qcommon/vm_x86.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="renderer/qgl.h" />
+		<Unit filename="renderer/tr_local.h" />
+		<Unit filename="renderer/tr_public.h" />
+		<Unit filename="server/server.h" />
+		<Unit filename="server/sv_bot.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="server/sv_ccmds.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="server/sv_client.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="server/sv_game.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="server/sv_init.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="server/sv_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="server/sv_net_chan.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="server/sv_snapshot.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="server/sv_world.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ui/keycodes.h" />
+		<Unit filename="ui/ui_public.h" />
+		<Unit filename="unix/ChangeLog" />
+		<Unit filename="unix/Conscript-pk3" />
+		<Unit filename="win32/cursor2.cur" />
+		<Unit filename="win32/cursor3.cur" />
+		<Unit filename="win32/qe3.ico" />
+		<Unit filename="win32/resource.h" />
+		<Unit filename="win32/win_input.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="win32/win_local.h" />
+		<Unit filename="win32/win_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="win32/win_net.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="win32/win_shared.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="win32/win_snd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="win32/win_syscon.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="win32/win_wndproc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="win32/winquake.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

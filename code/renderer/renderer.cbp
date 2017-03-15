@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="renderer" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Release Win32">
+				<Option output="../output/renderer" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="../obj/release/renderer" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_LIB" />
+					<Add option="-DC_ONLY" />
+				</Compiler>
+			</Target>
+			<Target title="Debug Win32">
+				<Option output="../output/rendererd" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="../obj/debug/renderer" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-W" />
+					<Add option="-O0" />
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D_LIB" />
+					<Add option="-DC_ONLY" />
+				</Compiler>
+			</Target>
+			<Target title="Release TA Win32">
+				<Option output="./Release_TA/renderer" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="Release_TA" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_LIB" />
+					<Add option="-Wall" />
+					<Add option="-O2" />
+				</Compiler>
+			</Target>
+			<Target title="Debug TA Win32">
+				<Option output="./Debug_TA/renderer" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="Debug_TA" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D_LIB" />
+					<Add option="-W" />
+					<Add option="-g" />
+					<Add option="-O0" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Unit filename="../cgame/tr_types.h" />
+		<Unit filename="../ft2/ahangles.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ahangles.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ahglobal.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ahglobal.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ahglyph.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ahglyph.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ahhint.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ahhint.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ahloader.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ahmodule.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ahmodule.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ahoptim.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ahoptim.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ahtypes.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/autohint.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/freetype.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftbbox.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftcalc.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftcalc.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftconfig.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftdebug.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftdebug.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftdriver.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/fterrors.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftextend.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftextend.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftglyph.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftglyph.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftgrays.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftimage.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftinit.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftlist.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftlist.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftmemory.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftmm.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftmm.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftmodule.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftnames.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftnames.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftobjs.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftobjs.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftoption.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftoutln.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftoutln.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftraster.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftrend1.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftrender.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftsmooth.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftstream.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftstream.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftsystem.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ftsystem.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/fttypes.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/psnames.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/sfdriver.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/sfnt.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/sfobjs.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/t1errors.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/t1tables.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/t1types.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/t2errors.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/t2types.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ttcmap.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ttdriver.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ttdriver.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/tterrors.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ttgload.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ttgload.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ttinterp.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ttinterp.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ttload.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ttnameid.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ttobjs.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ttobjs.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ttpload.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ttpload.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ttpost.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/ttsbit.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/tttables.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/tttags.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../ft2/tttypes.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../game/q_shared.h" />
+		<Unit filename="../game/surfaceflags.h" />
+		<Unit filename="../jpeg-6/jcapimin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jccoefct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jccolor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jcdctmgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jchuff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jchuff.h" />
+		<Unit filename="../jpeg-6/jcinit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jcmainct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jcmarker.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jcmaster.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jcomapi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jconfig.h" />
+		<Unit filename="../jpeg-6/jcparam.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jcphuff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jcprepct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jcsample.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jctrans.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jdapimin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jdapistd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jdatadst.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jdatasrc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jdcoefct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jdcolor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jdct.h" />
+		<Unit filename="../jpeg-6/jddctmgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jdhuff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jdhuff.h" />
+		<Unit filename="../jpeg-6/jdinput.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jdmainct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jdmarker.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jdmaster.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jdpostct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jdsample.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jdtrans.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jerror.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jerror.h" />
+		<Unit filename="../jpeg-6/jfdctflt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jidctflt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jinclude.h" />
+		<Unit filename="../jpeg-6/jmemmgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jmemnobs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jmemsys.h" />
+		<Unit filename="../jpeg-6/jmorecfg.h" />
+		<Unit filename="../jpeg-6/jpegint.h" />
+		<Unit filename="../jpeg-6/jpeglib.h" />
+		<Unit filename="../jpeg-6/jutils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../jpeg-6/jversion.h" />
+		<Unit filename="../qcommon/cm_public.h" />
+		<Unit filename="../qcommon/qcommon.h" />
+		<Unit filename="../qcommon/qfiles.h" />
+		<Unit filename="../win32/glw_win.h" />
+		<Unit filename="../win32/win_gamma.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../win32/win_glimp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../win32/win_local.h" />
+		<Unit filename="../win32/win_qgl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="qgl.h" />
+		<Unit filename="ref_trin.def" />
+		<Unit filename="tr_animation.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_backend.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_bsp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_cmds.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_curve.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_flares.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_font.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_image.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_init.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_light.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_local.h" />
+		<Unit filename="tr_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_marks.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_mesh.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_model.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_noise.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_public.h" />
+		<Unit filename="tr_scene.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_shade.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_shade_calc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_shader.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_shadows.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_sky.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_surface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tr_world.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
