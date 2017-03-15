@@ -106,7 +106,12 @@ void AAS_RoutingInfo(void)
 // Returns:				-
 // Changes Globals:		-
 //===========================================================================
+#ifdef _DEBUG
+int AAS_ClusterAreaNum(int cluster, int areanum)
+#else
 __inline int AAS_ClusterAreaNum(int cluster, int areanum)
+#endif
+
 {
 	int side, areacluster;
 
@@ -166,7 +171,11 @@ void AAS_InitTravelFlagFromType(void)
 // Returns:				-
 // Changes Globals:		-
 //===========================================================================
+#ifdef _DEBUG
+int AAS_TravelFlagForType_inline(int traveltype)
+#else
 __inline int AAS_TravelFlagForType_inline(int traveltype)
+#endif
 {
 	int tfl;
 
@@ -339,7 +348,11 @@ int AAS_EnableRoutingArea(int areanum, int enable)
 // Returns:				-
 // Changes Globals:		-
 //===========================================================================
+#ifdef _DEBUG
+float AAS_RoutingTime(void)
+#else
 __inline float AAS_RoutingTime(void)
+#endif
 {
 	return AAS_Time();
 } //end of the function AAS_RoutingTime
@@ -379,7 +392,11 @@ int AAS_GetAreaContentsTravelFlags(int areanum)
 // Returns:				-
 // Changes Globals:		-
 //===========================================================================
+#ifdef _DEBUG
+int AAS_AreaContentsTravelFlags_inline(int areanum)
+#else
 __inline int AAS_AreaContentsTravelFlags_inline(int areanum)
+#endif
 {
 	return aasworld.areacontentstravelflags[areanum];
 } //end of the function AAS_AreaContentsTravelFlags

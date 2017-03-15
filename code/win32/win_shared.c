@@ -58,6 +58,26 @@ int Sys_Milliseconds (void)
 Sys_SnapVector
 ================
 */
+
+#ifdef __MINGW32__
+
+long fastftol( float f ) { // bk001213 - from win32/win_shared.c
+  //static int tmp;
+  //	__asm fld f
+  //__asm fistp tmp
+  //__asm mov eax, tmp
+  return (long)f;
+}
+
+void Sys_SnapVector( float *v ) { // bk001213 - see win32/win_shared.c
+  // bk001213 - old linux
+  v[0] = rint(v[0]);
+  v[1] = rint(v[1]);
+  v[2] = rint(v[2]);
+}
+
+#else
+
 long fastftol( float f ) {
 	static int tmp;
 	__asm fld f
@@ -93,6 +113,7 @@ void Sys_SnapVector( float *v )
 	*/
 }
 
+#endif
 
 /*
 **
@@ -111,6 +132,13 @@ void Sys_SnapVector( float *v )
 static void CPUID( int func, unsigned regs[4] )
 {
 	unsigned regEAX, regEBX, regECX, regEDX;
+
+#ifdef __MINGW32__
+		regs[0] = 0;
+	regs[1] = 0;
+	regs[2] = 0;
+	regs[3] = 0;
+#else
 
 #ifndef __VECTORC
 	__asm mov eax, func
@@ -131,11 +159,16 @@ static void CPUID( int func, unsigned regs[4] )
 	regs[2] = 0;
 	regs[3] = 0;
 #endif
+
+#endif
 }
 
 static int IsPentium( void )
 {
-	__asm 
+
+	#ifndef __MINGW32__
+
+	__asm
 	{
 		pushfd						// save eflags
 		pop		eax
@@ -163,11 +196,17 @@ set21:
 err:
 	return qfalse;
 good:
+	#endif
 	return qtrue;
+
+
+
 }
 
 static int Is3DNOW( void )
 {
+	#ifndef __MINGW32__
+
 	unsigned regs[4];
 	char pstring[16];
 	char processorString[13];
@@ -202,11 +241,14 @@ static int Is3DNOW( void )
 	if ( regs[3] & ( 1 << 31 ) )
 		return qtrue;
 
+	#endif
 	return qfalse;
+
 }
 
 static int IsKNI( void )
 {
+	#ifndef __MINGW32__
 	unsigned regs[4];
 
 	// get CPU feature bits
@@ -215,7 +257,7 @@ static int IsKNI( void )
 	// bit 25 of EDX denotes KNI existence
 	if ( regs[3] & ( 1 << 25 ) )
 		return qtrue;
-
+	#endif
 	return qfalse;
 }
 
