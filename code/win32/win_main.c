@@ -84,6 +84,30 @@ void Spk_Printf (const char *text, ...)
 
 /*
 ==================
+Sys_CreateRunableMemPage(int size)
+==================
+*/
+
+void *Sys_CreateRunableMemPage(int size){
+	SIZE_T memsize = size;
+	return VirtualAlloc(NULL, memsize, MEM_COMMIT, PAGE_EXECUTE_READWRITE);
+}
+
+int Sys_RemoveRunableMemParam(void *address, int size, int *oldProtect){
+	DWORD or = *oldProtect;
+	int newProtect;
+	SIZE_T memsize = size;
+	newProtect = VirtualProtect(address, memsize, PAGE_EXECUTE_READ, &or);
+	*oldProtect = or;
+	return newProtect;
+}
+
+void Sys_DestroyRunableMemPage(void *address){
+	VirtualFree(address, 0, MEM_RELEASE);
+}
+
+/*
+==================
 Sys_LowPhysicalMemory()
 ==================
 */
@@ -479,7 +503,7 @@ char *Sys_GetClipboardData( void ) {
 				data = Z_Malloc( GlobalSize( hClipboardData ) + 1 );
 				Q_strncpyz( data, cliptext, GlobalSize( hClipboardData ) );
 				GlobalUnlock( hClipboardData );
-				
+
 				strtok( data, "\n\r\b" );
 			}
 		}
@@ -606,7 +630,7 @@ void * QDECL Sys_LoadDll( const char *name, char *fqpath , int (QDECL **entryPoi
 	}
 #endif
 
-	dllEntry = ( void (QDECL *)( int (QDECL *)( int, ... ) ) )GetProcAddress( libHandle, "dllEntry" ); 
+	dllEntry = ( void (QDECL *)( int (QDECL *)( int, ... ) ) )GetProcAddress( libHandle, "dllEntry" );
 	*entryPoint = (int (QDECL *)(int,...))GetProcAddress( libHandle, "vmMain" );
 	if ( !*entryPoint || !dllEntry ) {
 		FreeLibrary( libHandle );

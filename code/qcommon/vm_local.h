@@ -23,9 +23,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "qcommon.h"
 
 typedef enum {
-	OP_UNDEF, 
+	OP_UNDEF,
 
-	OP_IGNORE, 
+	OP_IGNORE,
 
 	OP_BREAK,
 
@@ -130,7 +130,7 @@ struct vm_s {
     int			(*systemCall)( int *parms );
 
 	//------------------------------------
-   
+
     char		name[MAX_QPATH];
 
 	// for dynamic linked modules
@@ -168,6 +168,7 @@ extern	vm_t	*currentVM;
 extern	int		vm_debugLevel;
 
 void VM_Compile( vm_t *vm, vmHeader_t *header );
+void VM_Destroy_Compiled(vm_t* self);
 int	VM_CallCompiled( vm_t *vm, int *args );
 
 void VM_PrepareInterpreter( vm_t *vm, vmHeader_t *header );

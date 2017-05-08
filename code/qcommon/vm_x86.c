@@ -29,6 +29,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #ifndef _WIN32
 #include <sys/mman.h> // for PROT_ stuff
+#else
+#include <windows.h>
 #endif
 
 /*
@@ -179,6 +181,40 @@ static	int		callProgramStack;
 static	int		*callOpStack;
 static	int		callSyscallNum;
 
+void doAsmCall(void){
+	__asm__("	movl (%%edi),%%eax			\n\t" \
+			"	subl $4,%%edi				\n\t" \
+			"   orl %%eax,%%eax				\n\t" \
+			"	jl systemCall				\n\t" \
+			"	shll $2,%%eax				\n\t" \
+			"	addl %3,%%eax				\n\t" \
+			"	call *(%%eax)				\n\t" \
+			" 	movl (%%edi),%%eax   		\n\t" \
+			" 	andl _callMask, %%eax 		\n\t" \
+			"	jmp doret					\n\t" \
+			"systemCall:					\n\t" \
+			"	negl %%eax					\n\t" \
+			"	decl %%eax					\n\t" \
+			"	movl %%eax,%0				\n\t" \
+			"	movl %%esi,%1				\n\t" \
+			"	movl %%edi,%2				\n\t" \
+			"	pushl %%ecx					\n\t" \
+			"	pushl %%esi					\n\t" \
+			"	pushl %%edi					\n\t" \
+			"	call _callAsmCall			\n\t" \
+			"	popl %%edi					\n\t" \
+			"	popl %%esi					\n\t" \
+			"	popl %%ecx					\n\t" \
+			"	addl $4,%%edi				\n\t" \
+			"doret:							\n\t" \
+			: "=rm" (callSyscallNum), "=rm" (callProgramStack), "=rm" (callOpStack) \
+			: "rm" (instructionPointers) \
+			: "ax", "di", "si", "cx" \
+	);
+
+
+}
+
 void callAsmCall(void)
 {
 	vm_t	*savedVM;
@@ -196,74 +232,10 @@ void callAsmCall(void)
  	currentVM = savedVM;
 }
 
+
+
 void AsmCall( void ) {
-	#ifdef __MINGW32__
-
-	__asm__("_doAsmCall:      			\n\t" \
-			"	movl (%%edi),%%eax			\n\t" \
-			"	subl $4,%%edi				\n\t" \
-			"   orl %%eax,%%eax				\n\t" \
-			"	jl systemCall				\n\t" \
-			"	shll $2,%%eax				\n\t" \
-			"	addl %3,%%eax				\n\t" \
-			"	call *(%%eax)				\n\t" \
-		  " movl (%%edi),%%eax   \n\t" \
-	    " andl _callMask, %%eax \n\t" \
-			"	jmp doret					   \n\t" \
-			"systemCall:					\n\t" \
-			"	negl %%eax					\n\t" \
-			"	decl %%eax					\n\t" \
-			"	movl %%eax,%0				\n\t" \
-			"	movl %%esi,%1				\n\t" \
-			"	movl %%edi,%2				\n\t" \
-			"	pushl %%ecx					\n\t" \
-			"	pushl %%esi					\n\t" \
-			"	pushl %%edi					\n\t" \
-			"	call _callAsmCall			\n\t" \
-			"	popl %%edi					\n\t" \
-			"	popl %%esi					\n\t" \
-			"	popl %%ecx					\n\t" \
-			"	addl $4,%%edi				\n\t" \
-			"doret:							\n\t" \
-			"	ret							\n\t" \
-			: "=rm" (callSyscallNum), "=rm" (callProgramStack), "=rm" (callOpStack) \
-			: "rm" (instructionPointers) \
-			: "ax", "di", "si", "cx" \
-	);
-
-	#else
-	__asm__("_doAsmCall:      			\n\t" \
-			"	movl (%%edi),%%eax			\n\t" \
-			"	subl $4,%%edi				\n\t" \
-			"   orl %%eax,%%eax				\n\t" \
-			"	jl systemCall				\n\t" \
-			"	shll $2,%%eax				\n\t" \
-			"	addl %3,%%eax				\n\t" \
-			"	call *(%%eax)				\n\t" \
-		  " movl (%%edi),%%eax   \n\t" \
-	    " andl callMask, %%eax \n\t" \
-			"	jmp doret					   \n\t" \
-			"systemCall:					\n\t" \
-			"	negl %%eax					\n\t" \
-			"	decl %%eax					\n\t" \
-			"	movl %%eax,%0				\n\t" \
-			"	movl %%esi,%1				\n\t" \
-			"	movl %%edi,%2				\n\t" \
-			"	pushl %%ecx					\n\t" \
-			"	pushl %%esi					\n\t" \
-			"	pushl %%edi					\n\t" \
-			"	call callAsmCall			\n\t" \
-			"	popl %%edi					\n\t" \
-			"	popl %%esi					\n\t" \
-			"	popl %%ecx					\n\t" \
-			"	addl $4,%%edi				\n\t" \
-			"doret:							\n\t" \
-			"	ret							\n\t" \
-			: "=rm" (callSyscallNum), "=rm" (callProgramStack), "=rm" (callOpStack) \
-			: "rm" (instructionPointers) \
-			: "ax", "di", "si", "cx" \
-	);
-	#endif
+	doAsmCall();
 }
 #endif
 
@@ -291,12 +263,10 @@ static void Emit1( int v )
 	LastCommand = LAST_COMMAND_NONE;
 }
 
-#if 0
 static void Emit2( int v ) {
 	Emit1( v & 255 );
 	Emit1( ( v >> 8 ) & 255 );
 }
-#endif
 
 static void Emit4( int v ) {
 	Emit1( v & 255 );
@@ -1095,8 +1065,27 @@ void VM_Compile( vm_t *vm, vmHeader_t *header ) {
 
 	// copy to an exact size buffer on the hunk
 	vm->codeLength = compiledOfs;
+	#if 0
 	vm->codeBase = Hunk_Alloc( compiledOfs, h_low );
+	#else
+	//vm->codeBase = VirtualAlloc(NULL, compiledOfs, MEM_COMMIT, PAGE_EXECUTE_READWRITE);
+	vm->codeBase = Sys_CreateRunableMemPage(compiledOfs);
+	if(!vm->codeBase)
+		Com_Error(ERR_FATAL, "VM_CompileX86: VirtualAlloc failed");
+	#endif
 	Com_Memcpy( vm->codeBase, buf, compiledOfs );
+	#if 0
+
+	#else
+	{
+		DWORD oldProtect = 0;
+
+		// remove write permissions.
+		//if(!VirtualProtect(vm->codeBase, compiledOfs, PAGE_EXECUTE_READ, &oldProtect))
+		if(!Sys_RemoveRunableMemParam(vm->codeBase, compiledOfs,&oldProtect))
+			Com_Error(ERR_FATAL, "VM_CompileX86: VirtualProtect failed");
+	}
+	#endif
 	Z_Free( buf );
 	Z_Free( jused );
 	Com_Printf( "VM file %s compiled to %i bytes of code\n", vm->name, compiledOfs );
@@ -1123,6 +1112,12 @@ void VM_Compile( vm_t *vm, vmHeader_t *header ) {
 	}
 #endif
 
+}
+
+void VM_Destroy_Compiled(vm_t* self)
+{
+	Sys_DestroyRunableMemPage(self->codeBase);
+	//VirtualFree(self->codeBase, 0, MEM_RELEASE);
 }
 
 /*

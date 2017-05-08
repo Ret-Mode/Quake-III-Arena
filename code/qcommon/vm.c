@@ -541,12 +541,10 @@ vm_t *VM_Create( const char *module, int (*systemCalls)(int *),
 	// copy or compile the instructions
 	vm->codeLength = header->codeLength;
 
-#if !defined(HAVE_VM_COMPILED)
-	if(interpret >= VMI_COMPILED) {
+	/*if(interpret >= VMI_COMPILED) {
 		Com_Printf("Architecture doesn't have a bytecode compiler, using interpreter\n");
 		interpret = VMI_BYTECODE;
-	}
-#endif
+	}*/
 
 	if ( interpret >= VMI_COMPILED ) {
 		vm->compiled = qtrue;
@@ -577,6 +575,9 @@ VM_Free
 ==============
 */
 void VM_Free( vm_t *vm ) {
+	if(vm && vm->compiled){
+		VM_Destroy_Compiled(vm);
+	}
 
 	if ( vm->dllHandle ) {
 		Sys_UnloadDll( vm->dllHandle );
@@ -602,10 +603,7 @@ void VM_Free( vm_t *vm ) {
 void VM_Clear(void) {
 	int i;
 	for (i=0;i<MAX_VM; i++) {
-		if ( vmTable[i].dllHandle ) {
-			Sys_UnloadDll( vmTable[i].dllHandle );
-		}
-		Com_Memset( &vmTable[i], 0, sizeof( vm_t ) );
+		VM_Free(vmTable + i);
 	}
 	currentVM = NULL;
 	lastVM = NULL;
