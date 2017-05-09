@@ -1076,7 +1076,7 @@ void VM_Compile( vm_t *vm, vmHeader_t *header ) {
 
 	#else
 	{
-		DWORD oldProtect = 0;
+		int oldProtect = 0;
 
 		// remove write permissions.
 		//if(!VirtualProtect(vm->codeBase, compiledOfs, PAGE_EXECUTE_READ, &oldProtect))
