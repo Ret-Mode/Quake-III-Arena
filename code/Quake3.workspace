@@ -9,8 +9,8 @@
 		<Project filename="splines/Splines.cbp" />
 		<Project filename="renderer/renderer.cbp" />
 		<Project filename="quake3.cbp">
-			<Depends filename="splines/Splines.cbp" />
 			<Depends filename="botlib/botlib.cbp" />
+			<Depends filename="splines/Splines.cbp" />
 			<Depends filename="renderer/renderer.cbp" />
 		</Project>
 	</Workspace>
